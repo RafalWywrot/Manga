@@ -1,0 +1,53 @@
+﻿@model Manga.WebApplication.Models.AssessmentViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>AssessmentViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        @Html.HiddenFor(x => x.Id)
+        <div class="form-group">
+            @Html.LabelFor(model => model.StudentId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.StudentId, Model.StudentsSelectList,  new { @class = "form-control" } )
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.SubjectId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.SubjectId, Model.SubjectsSelectList,  new { @class = "form-control" } )
+            </div>
+        </div>
+                <div class="form-group">
+            @Html.LabelFor(model => model.TeacherId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TeacherId, Model.TeachersSelectList,  new { @class = "form-control" } )
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.GradeId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.GradeId, Model.GradesSelectList,  new { @class = "form-control" } )
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

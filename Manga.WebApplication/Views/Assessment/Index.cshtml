@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Manga.WebApplication.Models.GradesNameViewModel>
+@using GridMvc.Html
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Grades</h2>
+<div class="btn-group" role="group">
+    <button type="button" onclick="location.href='@Url.Action("Create", "Assessment")'" class="btn btn-success btn-lg" aria-haspopup="true" aria-expanded="false">
+        @Html.Name("Fill a grade")
+        <span class="glyphicon glyphicon-plus" style="padding-left:10px;"></span>
+    </button>
+</div>
+@*<table class="table">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.StudentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubjectName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TeacherName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grade)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubjectName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TeacherName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Remove", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>*@
+<div>
+    @Html.Grid(Model).Columns(columns =>
+                        {
+                            columns.Add(c => c.StudentName).SetWidth(50);
+                            columns.Add(c => c.SubjectName).SetWidth(50);
+                            columns.Add(c => c.TeacherName).SetWidth(50);;
+                            columns.Add(c => c.Grade).SetWidth(50);;
+                            columns.Add()
+                                        .Encoded(false)
+                                        .Sanitized(false)
+                                        .SetWidth(30)
+                                        .RenderValueAs(d =>
+                                                        @<strong>
+                                                            @Html.ActionLink("Edit", "Edit", "Assessment", new { id =                                                                                       d.Id }, new { })
+                                                        </strong>
+                                                        );
+                            columns.Add()
+                                    .Encoded(false)
+                                    .Sanitized(false)
+                                    .SetWidth(30)
+                                    .RenderValueAs(d =>
+                                                    @<strong>
+                                                            @Html.ActionLink("Remove", "Delete", "Assessment", new { id =                                                                                       d.Id }, new { })
+                                                        </strong>
+                                                        );
+                        }).WithPaging(6).Filterable(true).WithMultipleFilters().Sortable(true)
+</div>

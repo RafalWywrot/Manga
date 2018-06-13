@@ -12,8 +12,7 @@ namespace Manga.WebApplication.Controllers
     {
         public ActionResult Index()
         {
-            var data = new ApiClient().GetData<List<Book>>("api/book/add");
-            return View(data);
+            return View();
         }
 
         public ActionResult About()

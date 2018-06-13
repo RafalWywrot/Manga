@@ -5,10 +5,9 @@ using System.Web;
 
 namespace Manga.WebApplication.Models
 {
-    public class Book
+    public class GendersViewModel
     {
-        public Guid Id{ get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public DateTime DateOfCreation { get; set; }
     }
 }

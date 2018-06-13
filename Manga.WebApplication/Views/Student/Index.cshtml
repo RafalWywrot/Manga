@@ -1,0 +1,39 @@
+﻿@model List<Manga.WebApplication.Models.StudentViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Students</h2>
+<div class="btn-group" role="group">
+    <button type="button" onclick="location.href='@Url.Action("Add", "Student")'" class="btn btn-success btn-lg" aria-haspopup="true" aria-expanded="false">
+        @Html.Name("Create student")
+        <span class="glyphicon glyphicon-plus" style="padding-left:10px;"></span>
+    </button>
+</div>
+<div class="table-responsive">
+    <table class="table table-bordered table-condensed">
+        <tr>
+            <th class="col-md-2">@Html.DisplayNameFor(x => x[0].Name)</th>
+            <th class="col-md-2">@Html.DisplayNameFor(x => x[0].Surname)</th>
+            <th class="col-md-2">@Html.DisplayNameFor(x => x[0].Email)</th>
+            <th class="col-md-2">@Html.DisplayNameFor(x => x[0].PhoneNumber)</th>
+            <th class="col-md-2">@Html.DisplayNameFor(x => x[0].City)</th>
+            <th class="col-md-2">@Html.DisplayName("Actions")</th>
+        </tr>
+
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td class="col-md-2">@student.Name</td>
+                <td class="col-md-2">@student.Surname</td>
+                <td class="col-md-2">@student.Email</td>
+                <td class="col-md-2">@student.PhoneNumber</td>
+                <td class="col-md-2">@student.City</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = student.Id })&nbsp; | &nbsp;
+                    @Html.ActionLink("Details", "Details", new { id = student.Id })&nbsp; | &nbsp;
+                    @Html.ActionLink("Remove", "Remove", new { id = student.Id })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
